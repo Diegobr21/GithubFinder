@@ -29,6 +29,8 @@ class App extends Component{
 
   render(){
 
+    const { loading, users} = this.state;
+
     return (
      <Fragment> 
         <Navbar></Navbar>
@@ -36,8 +38,8 @@ class App extends Component{
           <Search 
           searchUsers={this.searchUsers}
           clearUsers={this.clearUsers}
-          showClear={this.state.users.length > 0 ? true : false}/>
-          <Users loading={this.state.loading} users={this.state.users}></Users>
+          showClear={users.length > 0 ? true : false}/>
+          <Users loading={loading} users={users}></Users>
         </div>
         
       </Fragment>
