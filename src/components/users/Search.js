@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Fragment } from 'react';
 
 
 export class Search extends Component {
@@ -9,7 +10,8 @@ export class Search extends Component {
 
     static propTypes = {
         searchUsers: PropTypes.func.isRequired,
-        clearUsers: PropTypes.func.isRequired
+        clearUsers: PropTypes.func.isRequired,
+        showClear: PropTypes.bool.isRequired
     }
 
     onChange = (e) => this.setState({[e.target.name]: e.target.value});
@@ -20,8 +22,9 @@ export class Search extends Component {
         this.setState({text: ''})
     }
     render() {
+        const {showClear, clearUsers} = this.props;
         return (
-            <div>
+            <Fragment>
                 <form onSubmit={this.onSubmit} className='form'>
                     <input type = 'text' 
                     placeholder='Search for users ...'
@@ -33,8 +36,11 @@ export class Search extends Component {
                     className='btn btn-dark btn-block'
                     value='Search' />
                 </form>
-                <button className='btn btn-light btn-block' onClick={this.props.clearUsers} >Clear</button>
-            </div>
+                {showClear && <button className='btn btn-light btn-block' onClick={clearUsers} >Clear</button>}
+                    
+                
+                
+            </Fragment>
         )
     }
 }
