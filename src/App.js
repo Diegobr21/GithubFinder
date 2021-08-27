@@ -1,5 +1,6 @@
 import react from 'react';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React , { Component, Fragment } from  'react' ;
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
@@ -26,7 +27,7 @@ class App extends Component{
     this.setState({users: res.data.items, loading:false})
   }
 
-  //Clear users from state
+  //Clear users from state 
   clearUsers = () => this.setState({users: [], loading:false})
 
   //Set Alert
