@@ -4,13 +4,15 @@ import React , { Component, Fragment } from  'react' ;
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 import Search from './components/users/Search';
+import { Alert } from './components/layout/Alert';
 import axios from 'axios';
 
 class App extends Component{
 
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert:null
   }
 
 
@@ -27,6 +29,12 @@ class App extends Component{
   //Clear users from state
   clearUsers = () => this.setState({users: [], loading:false})
 
+  //Set Alert
+  setAlert = (msg, type) => {
+    this.setState({alert: {msg, type}})
+    setTimeout(() => this.setState({alert:null}), 3500 )
+  }
+
   render(){
 
     const { loading, users} = this.state;
@@ -35,10 +43,12 @@ class App extends Component{
      <Fragment> 
         <Navbar></Navbar>
         <div className='container'>
+          <Alert alert={this.state.alert}></Alert>
           <Search 
           searchUsers={this.searchUsers}
           clearUsers={this.clearUsers}
-          showClear={users.length > 0 ? true : false}/>
+          showClear={users.length > 0 ? true : false}
+          setAlert={this.setAlert}/>
           <Users loading={loading} users={users}></Users>
         </div>
         
