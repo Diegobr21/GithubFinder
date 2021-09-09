@@ -10,6 +10,8 @@ import { Alert } from './components/layout/Alert';
 import { About } from './components/pages/About';
 import axios from 'axios';
 
+import GithubState from './context/github/GithubState';
+
 const App = () => { 
 
   const [users, setUsers] = useState([]);
@@ -65,6 +67,7 @@ const App = () => {
   }
 
     return (
+      <GithubState>
       <Router>
       
         <Navbar></Navbar>
@@ -102,6 +105,7 @@ const App = () => {
         </div>
       
       </Router>
+      </GithubState>
     );
   
 }
